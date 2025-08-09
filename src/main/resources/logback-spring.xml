@@ -17,8 +17,16 @@
         </encoder>
     </appender>
 
-    <root level="INFO">
-        <appender-ref ref="ROLLING"/>
-        <appender-ref ref="CONSOLE"/>
-    </root>
+    <!-- Use Spring profiles to control which appenders -->
+    <springProfile name="!debug">
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="debug">
+        <root level="DEBUG">
+            <appender-ref ref="FILE"/>
+        </root>
+    </springProfile>
 </configuration>
